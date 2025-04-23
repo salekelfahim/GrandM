@@ -260,13 +260,18 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .bestsellers-header h2 {
-    font-size: 32px;
-    font-weight: 600;
-    color: #000;
+    font-family: "Poppins", sans-serif;
+    font-size: 55px;
+    font-weight: 300;
+    background: linear-gradient(to right, #000000 0%, #636363 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
 }
 
 .navigation-buttons {
@@ -305,6 +310,7 @@ ul {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    margin-bottom: 9%;
 }
 
 /* New Anima-style Product Card */

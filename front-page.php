@@ -46,20 +46,14 @@ get_header();
           </div>
         </div>
         
-        <div class="product-grid">
-          <?php
-          $args = array(
-            'post_type' => 'product',
-            'posts_per_page' => 4,
-            'meta_key' => 'total_sales',
-            'orderby' => 'meta_value_num',
-            'order' => 'DESC'
-          );
+        <?php
+        // Function to display product grid
+        function display_product_grid($args) {
+          $query = new WP_Query($args);
           
-          $best_sellers = new WP_Query($args);
-          
-          if ($best_sellers->have_posts()) :
-            while ($best_sellers->have_posts()) : $best_sellers->the_post();
+          if ($query->have_posts()) :
+            echo '<div class="product-grid">';
+            while ($query->have_posts()) : $query->the_post();
               global $product;
               ?>
               <div class="box">
@@ -85,10 +79,57 @@ get_header();
               </div>
             <?php
             endwhile;
+            echo '</div>';
             wp_reset_postdata();
           endif;
-          ?>
-        </div>
+        }
+
+        // Best Sellers for all users
+        $best_sellers_args = array(
+          'post_type' => 'product',
+          'posts_per_page' => 4,
+          'meta_key' => 'total_sales',
+          'orderby' => 'meta_value_num',
+          'order' => 'DESC'
+        );
+        
+        display_product_grid($best_sellers_args);
+
+        // Additional categories for logged-in users
+        if (is_user_logged_in()) {
+          // T-shirts category
+          $tshirts_args = array(
+            'post_type' => 'product',
+            'posts_per_page' => 4,
+            'tax_query' => array(
+              array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => 'tshirts'
+              )
+            )
+          );
+          
+          echo '<div class="bestsellers-header"><h2>Les fruits</h2></div>';
+          display_product_grid($tshirts_args);
+
+          // Hoodies category
+          $hoodies_args = array(
+            'post_type' => 'product',
+            'posts_per_page' => 4,
+            'tax_query' => array(
+              array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => 'hoodies'
+              )
+            )
+          );
+          
+          echo '<div class="bestsellers-header"><h2>Les Légumes</h2></div>';
+          display_product_grid($hoodies_args);
+        }
+        ?>
       </section>
 
       <!-- Features section -->
