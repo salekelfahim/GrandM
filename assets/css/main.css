@@ -1325,10 +1325,14 @@ ul {
 
 .connexion-title {
     text-align: center;
-    font-size: 36px;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 40px;
+    font-size: 55px;
+    font-weight: 300;
+    background: linear-gradient(to right, #000000 0%, #636363 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    margin-bottom: 10%;
     margin-top: 50px;
 }
 
@@ -1370,13 +1374,23 @@ ul {
 }
 
 .password-toggle {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
     background: none;
     border: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
+    color: #507A32;
+    padding: 5px;
+}
+
+.password-toggle:hover {
+    color: #549932;
+}
+
+.password-toggle i {
+    font-size: 18px;
 }
 
 .connexion-btn {
@@ -1416,10 +1430,9 @@ ul {
     transition: background-color 0.3s;
 }
 
-.google-btn img {
+.google-btn i {
     margin-right: 10px;
-    width: 20px;
-    height: 20px;
+    font-size: 18px;
 }
 
 .google-btn:hover {

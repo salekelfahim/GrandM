@@ -44,7 +44,7 @@
             <?php if (is_front_page()) : ?>
               <div class="auth-buttons">
                 <a href="<?php echo get_permalink(get_page_by_path('connexion')); ?>" class="btn btn-outline">Connexion</a>
-                <a href="<?php echo get_permalink(get_page_by_path('sinscrire')); ?>" class="btn btn-filled">S'inscrire</a>
+                <a href="<?php echo get_permalink(get_page_by_path('inscription')); ?>" class="btn btn-filled">S'inscrire</a>
               </div>
             <?php endif; ?>
           </div>

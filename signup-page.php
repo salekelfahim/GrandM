@@ -1,8 +1,8 @@
 <?php
 /**
- * Template Name: Login Page
+ * Template Name: Sign Up Page
  *
- * This is the template for displaying the login page.
+ * This is the template for displaying the registration page.
  *
  * @package Le_Grand_Marche
  */
@@ -13,38 +13,49 @@ get_header();
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
         <div class="connexion-container">
-            <h1 class="connexion-title">Connexion</h1>
+            <h1 class="connexion-title">S'inscrire</h1>
             
             <div class="form-container">
                 <form action="#" method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        <div class="input-container">
+                            <input type="text" id="name" class="form-control" placeholder="Enter user name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="input-container">
+                            <input type="email" id="email" class="form-control" placeholder="Enter your Email">
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <div class="password-container">
+                        <div class="input-container">
                             <input type="password" id="password" class="form-control" placeholder="Enter password">
                             <button type="button" class="password-toggle">
                                 <i class="fa-regular fa-eye"></i>
                             </button>
                         </div>
-                        <div class="forgot-password">
-                            <a href="#">Forgot password?</a>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm password</label>
+                        <div class="input-container">
+                            <input type="password" id="confirm-password" class="form-control" placeholder="Enter password">
+                            <button type="button" class="password-toggle">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     
                     <button type="submit" class="connexion-btn">Connectez-vous</button>
-                    
-                    <button type="button" class="google-btn">
-                        <i class="fa-brands fa-google"></i>
-                        Connectez-vous avec Google
-                    </button>
                 </form>
                 
                 <div class="signup-prompt">
-                    Vous n'avez pas de compte ? <a href="<?php echo esc_url(home_url('/inscription')); ?>">S'inscrire</a>
+                    Already have an account ? <a href="<?php echo esc_url(home_url('/connexion')); ?>">Sign in</a>
                 </div>
             </div>
         </div>
@@ -53,12 +64,12 @@ get_header();
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const passwordToggle = document.querySelector('.password-toggle');
-        const toggleIcon = document.querySelector('.password-toggle i');
+        const passwordToggles = document.querySelectorAll('.password-toggle');
         
-        if (passwordToggle) {
-            passwordToggle.addEventListener('click', function() {
-                const passwordInput = document.getElementById('password');
+        passwordToggles.forEach(toggle => {
+            const toggleIcon = toggle.querySelector('i');
+            toggle.addEventListener('click', function() {
+                const passwordInput = this.parentElement.querySelector('input');
                 if (passwordInput.type === 'password') {
                     passwordInput.type = 'text';
                     toggleIcon.classList.remove('fa-eye');
@@ -69,7 +80,7 @@ get_header();
                     toggleIcon.classList.add('fa-eye');
                 }
             });
-        }
+        });
     });
 </script>
 

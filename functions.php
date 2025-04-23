@@ -138,28 +138,30 @@ add_action( 'widgets_init', 'le_grand_marche_widgets_init' );
  * Enqueue scripts and styles.
  */
 function le_grand_marche_scripts() {
-    wp_enqueue_style( 'le-grand-marche-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_enqueue_style('bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');    
-	wp_enqueue_style( 'le-grand-marche-main', get_template_directory_uri() . '/assets/css/main.css', array(), _S_VERSION );
-    wp_style_add_data( 'le-grand-marche-style', 'rtl', 'replace' );
+    // Enqueue Bootstrap CSS first
+    wp_enqueue_style('bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+    
+    // Enqueue Font Awesome
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+    
+    // Enqueue Poppins font
+    wp_enqueue_style('poppins-font', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+    
+    // Enqueue custom CSS
+    wp_enqueue_style('le-grand-marche-main', get_template_directory_uri() . '/assets/css/main.css', array(), time());
 
-    wp_enqueue_script( 'le-grand-marche-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-	wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js', array('jquery'), '', true);
-    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-        wp_enqueue_script( 'comment-reply' );
+    // Enqueue scripts
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js', array('jquery'), null, true);
+}
+add_action('wp_enqueue_scripts', 'le_grand_marche_scripts');
+
+function le_grand_marche_inscription_styles() {
+    if (is_page_template('inscription-page.php')) {
+        wp_enqueue_style('le-grand-marche-inscription', get_template_directory_uri() . '/style-inscription.css', array(), '1.0.0');
     }
 }
-add_action( 'wp_enqueue_scripts', 'le_grand_marche_scripts' );
-
-/**
- * Poppins font
- */
-function enqueue_poppins_font() {
-	wp_register_style('poppins-font', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
-	wp_enqueue_style('poppins-font');
-}
-add_action('wp_enqueue_scripts', 'enqueue_poppins_font');
-
+add_action('wp_enqueue_scripts', 'le_grand_marche_inscription_styles');
 
 /**
  * Implement the Custom Header feature.

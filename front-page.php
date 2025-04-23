@@ -47,89 +47,47 @@ get_header();
         </div>
         
         <div class="product-grid">
-          <!-- Pommes Product Card -->
-          <div class="box">
-            <div class="group">
-              <div class="overlap-group">
-                <div class="overlap">
-                  <div class="icons-shop"></div>
-                </div>
-                <div class="div">
-                  <div class="text-wrapper">Pommes</div>
-                  <div class="text-wrapper-2">12,00 Mad</div>
-                </div>
-                <div class="overlap-2">
-                  <div class="ellipse"></div>
-                  <img class="apples-red-fresh" src="https://c.animaapp.com/K4rR5xEo/img/apples-red-fresh-mellow-juicy-perfect-whole-white-desk-1@2x.png" alt="Pommes" />
-                  <div class="text-wrapper-3">1kg</div>
-                  <div class="vector"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-      
-          <!-- La grenade Product Card -->
-          <div class="box">
-            <div class="group">
-              <div class="overlap-group">
-                <div class="overlap">
-                  <div class="icons-shop"></div>
-                </div>
-                <div class="div">
-                  <div class="text-wrapper">La grenade</div>
-                  <div class="text-wrapper-2">12,00 Mad</div>
-                </div>
-                <div class="overlap-2">
-                  <div class="ellipse"></div>
-                  <img class="apples-red-fresh" src="https://c.animaapp.com/K4rR5xEo/img/pomegranate-11@2x.png" alt="La grenade" />
-                  <div class="text-wrapper-3">1kg</div>
-                  <div class="vector"></div>
+          <?php
+          $args = array(
+            'post_type' => 'product',
+            'posts_per_page' => 4,
+            'meta_key' => 'total_sales',
+            'orderby' => 'meta_value_num',
+            'order' => 'DESC'
+          );
+          
+          $best_sellers = new WP_Query($args);
+          
+          if ($best_sellers->have_posts()) :
+            while ($best_sellers->have_posts()) : $best_sellers->the_post();
+              global $product;
+              ?>
+              <div class="box">
+                <div class="group">
+                  <div class="overlap-group">
+                    <div class="overlap">
+                      <div class="icons-shop"></div>
+                    </div>
+                    <div class="div">
+                      <div class="text-wrapper"><?php the_title(); ?></div>
+                      <div class="text-wrapper-2"><?php echo $product->get_price_html(); ?></div>
+                    </div>
+                    <div class="overlap-2">
+                      <div class="ellipse"></div>
+                      <?php if (has_post_thumbnail()) : ?>
+                        <img class="apples-red-fresh" src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="<?php the_title(); ?>" />
+                      <?php endif; ?>
+                      <div class="text-wrapper-3"><?php echo $product->get_weight() ? $product->get_weight() . 'kg' : ''; ?></div>
+                      <div class="vector"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-      
-          <!-- Ananas Product Card -->
-          <div class="box">
-            <div class="group">
-              <div class="overlap-group">
-                <div class="overlap">
-                  <div class="icons-shop"></div>
-                </div>
-                <div class="div">
-                  <div class="text-wrapper">Ananas</div>
-                  <div class="text-wrapper-2">12,00 Mad</div>
-                </div>
-                <div class="overlap-2">
-                  <div class="ellipse"></div>
-                  <img class="apples-red-fresh" src="https://c.animaapp.com/K4rR5xEo/img/pineapple-pieces.png" alt="Ananas" />
-                  <div class="text-wrapper-3">1kg</div>
-                  <div class="vector"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-      
-          <!-- La pêche Product Card -->
-          <div class="box">
-            <div class="group">
-              <div class="overlap-group">
-                <div class="overlap">
-                  <div class="icons-shop"></div>
-                </div>
-                <div class="div">
-                  <div class="text-wrapper">La pêche</div>
-                  <div class="text-wrapper-2">12,00 Mad</div>
-                </div>
-                <div class="overlap-2">
-                  <div class="ellipse"></div>
-                  <img class="apples-red-fresh" src="https://c.animaapp.com/K4rR5xEo/img/peach-24-1@2x.png" alt="La pêche" />
-                  <div class="text-wrapper-3">1kg</div>
-                  <div class="vector"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <?php
+            endwhile;
+            wp_reset_postdata();
+          endif;
+          ?>
         </div>
       </section>
 
