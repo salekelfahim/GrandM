@@ -344,18 +344,19 @@ ul {
     top: 254px;
     left: 225px;
     border-radius: 7px;
-    background-color: #507A32;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .box .icons-shop {
     position: relative;
     width: 17px;
     height: 16px;
-    top: 16px;
-    left: 15px;
-    background-image: url(https://c.animaapp.com/K4rR5xEo/img/cart-3@2x.png);
+    background-image: url(http://localhost/wordpress/wp-content/uploads/2025/04/icons-shop.png);
     background-size: 100% 100%;
-    filter: brightness(0) invert(1);
+    z-index: 1;
 }
 
 .box .div {
@@ -453,9 +454,11 @@ ul {
     height: 18px;
     top: 1px;
     left: 228px;
-    background-image: url(https://c.animaapp.com/K4rR5xEo/img/vector-3.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
+    color: #DDE5D0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
 }
 
 

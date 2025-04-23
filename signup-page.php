@@ -33,7 +33,7 @@ get_header();
                     
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <div class="input-container">
+                        <div class="password-container">
                             <input type="password" id="password" class="form-control" placeholder="Enter password">
                             <button type="button" class="password-toggle">
                                 <i class="fa-regular fa-eye"></i>
@@ -42,9 +42,9 @@ get_header();
                     </div>
 
                     <div class="form-group">
-                        <label for="confirm-password">Confirm password</label>
-                        <div class="input-container">
-                            <input type="password" id="confirm-password" class="form-control" placeholder="Enter password">
+                    <label for="confirm-password">Confirm password</label>
+                    <div class="password-container">
+                            <input type="password" id="password" class="form-control" placeholder="Enter password">
                             <button type="button" class="password-toggle">
                                 <i class="fa-regular fa-eye"></i>
                             </button>

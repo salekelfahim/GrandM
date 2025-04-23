@@ -72,7 +72,9 @@ get_header();
                         <img class="apples-red-fresh" src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="<?php the_title(); ?>" />
                       <?php endif; ?>
                       <div class="text-wrapper-3"><?php echo $product->get_weight() ? $product->get_weight() . 'kg' : ''; ?></div>
-                      <div class="vector"></div>
+                      <div class="vector">
+                        <i class="fas fa-heart"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
