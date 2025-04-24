@@ -1539,6 +1539,16 @@ ul {
     align-items: center;
 }
 
+.favoris-hero {
+    background: linear-gradient(to right, #549932, #507A32);
+    margin: 0;
+    color: white;
+    height: 181px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .fruits-hero-content {
     display: flex;
     justify-content: space-between;
