@@ -323,20 +323,19 @@ ul {
     position: relative;
     border-radius: 7px;
     background-color: #f5f9f0;
+    overflow: hidden;
 }
 
 .box .group {
     position: relative;
-    width: 293px;
-    height: 336px;
-    top: 0;
-    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .box .overlap-group {
     position: relative;
-    width: 293px;
-    height: 336px;
+    width: 100%;
+    height: 100%;
     border-radius: 7px;
 }
 
@@ -403,18 +402,30 @@ ul {
     height: 223px;
     top: 25px;
     left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .box .ellipse {
     position: absolute;
     width: 161px;
     height: 31px;
-    top: 142px;
-    left: 41px;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #00000099;
     border-radius: 80.71px/15.59px;
     filter: blur(11.5px);
     mix-blend-mode: multiply;
+}
+
+.box .product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
 }
 
 .box .apples-red-fresh {
@@ -1510,3 +1521,164 @@ ul {
     height: 33px;
     object-fit: cover;
   }
+
+/* Fruits Page Styles */
+.fruits-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.fruits-hero {
+    background-color: #4CAF50;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.fruits-hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.fruits-hero-text {
+    flex: 1;
+}
+
+.fruits-hero-text h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.fruits-hero-text p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.fruits-hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.fruits-hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.search-button {
+    background-color: #45a049;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #3d8b40;
+}
+
+/* Products Grid Styles */
+.products-section {
+    padding: 40px 0;
+}
+
+.fruits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.pagination .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.pagination .page-numbers.current {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination .page-numbers:hover:not(.current) {
+    background-color: #e0e0e0;
+}
+
+.pagination .prev,
+.pagination .next {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Fruits Page Responsive Styles */
+@media (max-width: 768px) {
+    .fruits-hero-content {
+        flex-direction: column;
+    }
+
+    .fruits-hero-text {
+        text-align: center;
+    }
+
+    .fruits-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .fruits-hero {
+        padding: 20px;
+    }
+
+    .fruits-hero-text h1 {
+        font-size: 36px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .fruits-grid {
+        grid-template-columns: 1fr;
+    }
+}
