@@ -41,7 +41,7 @@
             ?>
           </div>
           <?php if (is_front_page()): ?>
-          <div class="col-md-3">
+          <div class="<?php echo is_user_logged_in() ? 'col-md-1' : 'col-md-3'; ?>">
             <?php if (is_front_page()) : ?>
               <?php if (!is_user_logged_in()) : ?>
                 <div class="auth-buttons">
