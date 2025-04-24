@@ -1524,17 +1524,19 @@ ul {
 
 /* Fruits Page Styles */
 .fruits-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .fruits-hero {
-    background-color: #4CAF50;
-    border-radius: 20px;
-    padding: 40px;
-    margin-bottom: 40px;
+    background: linear-gradient(to right, #549932, #507A32);
+    margin: 0;
     color: white;
+    height: 386px;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .fruits-hero-content {
@@ -1542,10 +1544,15 @@ ul {
     justify-content: space-between;
     align-items: center;
     gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 5%;
 }
 
 .fruits-hero-text {
-    flex: 1;
+    flex: 0 0 555px;
+    width: 555px;
 }
 
 .fruits-hero-text h1 {
@@ -1558,18 +1565,36 @@ ul {
     font-size: 16px;
     margin-bottom: 30px;
     line-height: 1.6;
+    opacity: 0.9;
 }
 
 .fruits-hero-image {
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.fruits-hero-image::before {
+    content: '';
+    position: absolute;
+    width: 595px;
+    height: 204px;
+    background: linear-gradient(92deg, #ADC88B 0%, #E0EEC3 100%);
+    border-radius: 26px;
+    z-index: 1;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .fruits-hero-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
+    width: 448px;
+    height: 296px;
+    position: relative;
+    z-index: 2;
+    object-fit: contain;
 }
 
 .search-bar {
@@ -1579,31 +1604,44 @@ ul {
 }
 
 .search-input {
-    flex: 1;
+    width: 290px;
+    height: 50px;
     padding: 12px 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: 7px;
     font-size: 16px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.29) 0%, rgba(255, 255, 255, 0.46) 100%);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .search-button {
-    background-color: #45a049;
+    width: 202px;
+    height: 50px;
+    background: linear-gradient(90deg, #507A32 0%, #549932 100%);
     color: white;
     border: none;
-    padding: 12px 30px;
-    border-radius: 8px;
+    border-radius: 7px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .search-button:hover {
-    background-color: #3d8b40;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Products Grid Styles */
 .products-section {
-    padding: 40px 0;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
 .fruits-grid {
@@ -1616,52 +1654,75 @@ ul {
 /* Pagination Styles */
 .pagination {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-top: 40px;
+    margin-left: 20px;  /* Position pagination on the left */
+    justify-content: flex-start;  /* Ensure left alignment */
 }
 
 .pagination .page-numbers {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    color: #333;
     text-decoration: none;
-    transition: all 0.3s;
+    color: #666;
+    font-size: 16px;
 }
 
-.pagination .page-numbers.current {
-    background-color: #4CAF50;
+/* Previous arrow button */
+.pagination .prev {
+    width: 49px;
+    height: 50px;
+    border-radius: 7px;
+    background-color: #c4c4c4;
     color: white;
 }
 
-.pagination .page-numbers:hover:not(.current) {
-    background-color: #e0e0e0;
+/* Next arrow button */
+.pagination .next {
+    width: 49px;
+    height: 50px;
+    border-radius: 7px;
+    background: linear-gradient(180deg, #357108 0%, #3B7A0B 100%);
+    color: white;
 }
 
-.pagination .prev,
-.pagination .next {
-    font-size: 20px;
-    font-weight: bold;
+/* Regular number buttons */
+.pagination .page-numbers:not(.prev):not(.next) {
+    width: 33px;
+    height: 34px;
+    border-radius: 7px;
+    color: #666;
 }
+
+/* Active/current page number */
+.pagination .current {
+    width: 33px;
+    height: 34px;
+    border-radius: 7px;
+    background: linear-gradient(180deg, #357108 0%, #3B7A0B 100%);
+    color: white !important;
+} 
 
 /* Fruits Page Responsive Styles */
 @media (max-width: 768px) {
-    .fruits-hero-content {
-        flex-direction: column;
+    .fruits-hero {
+        height: auto;
+        padding: 30px 5%;
     }
 
-    .fruits-hero-text {
+    .fruits-hero-content {
+        flex-direction: column;
         text-align: center;
     }
 
-    .fruits-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    .fruits-hero-text {
+        margin-bottom: 30px;
+    }
+
+    .fruits-hero-image {
+        max-width: 100%;
     }
 }
 
@@ -1680,5 +1741,13 @@ ul {
 
     .fruits-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Update responsive styles to handle new widths */
+@media (max-width: 1200px) {
+    .fruits-hero-text {
+        flex: 1;
+        width: 100%;
     }
 }
