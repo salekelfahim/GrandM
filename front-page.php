@@ -26,7 +26,14 @@ get_header();
                 Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour
                 calibrer une mise en page, page est achevée. Généralement, on utilise un texte en faux latin...
               </p>
-              <a href="#" class="btn btn-connect">Connectez-vous</a>
+              <?php if (is_user_logged_in()) : ?>
+                <div class="search-bar">
+                    <input type="text" placeholder="Recherche" class="search-input">
+                    <button class="search-button">Recherche</button>
+                </div>
+              <?php else : ?>
+                <a href="<?php echo esc_url(home_url('/connexion')); ?>" class="btn btn-connect">Connectez-vous</a>
+              <?php endif; ?>
             </div>
             <div class="hero-image">
                 <div class="vegetable-container">
