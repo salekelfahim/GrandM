@@ -99,37 +99,37 @@ get_header();
 
         // Additional categories for logged-in users
         if (is_user_logged_in()) {
-          // T-shirts category
-          $tshirts_args = array(
+          // Fruits category
+          $fruits_args = array(
             'post_type' => 'product',
             'posts_per_page' => 4,
             'tax_query' => array(
               array(
                 'taxonomy' => 'product_cat',
                 'field'    => 'slug',
-                'terms'    => 'tshirts'
+                'terms'    => 'Fruits'
               )
             )
           );
           
           echo '<div class="bestsellers-header"><h2>Les fruits</h2></div>';
-          display_product_grid($tshirts_args);
+          display_product_grid($fruits_args);
 
-          // Hoodies category
-          $hoodies_args = array(
+          // Légumes category
+          $legumes_args = array(
             'post_type' => 'product',
             'posts_per_page' => 4,
             'tax_query' => array(
               array(
                 'taxonomy' => 'product_cat',
                 'field'    => 'slug',
-                'terms'    => 'hoodies'
+                'terms'    => 'Légumes'
               )
             )
           );
           
           echo '<div class="bestsellers-header"><h2>Les Légumes</h2></div>';
-          display_product_grid($hoodies_args);
+          display_product_grid($legumes_args);
         }
         ?>
       </section>

@@ -272,6 +272,8 @@ ul {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-fill-color: transparent;
+    margin-left: -5%;
+
 }
 
 .navigation-buttons {
@@ -310,7 +312,8 @@ ul {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    margin-bottom: 9%;
+    margin-bottom: 7%;
+    margin-left: -5%;
 }
 
 /* New Anima-style Product Card */
