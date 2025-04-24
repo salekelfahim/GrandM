@@ -43,10 +43,19 @@
           <?php if (is_front_page()): ?>
           <div class="col-md-3">
             <?php if (is_front_page()) : ?>
-              <div class="auth-buttons">
-                <a href="<?php echo get_permalink(get_page_by_path('connexion')); ?>" class="btn btn-outline">Connexion</a>
-                <a href="<?php echo get_permalink(get_page_by_path('inscription')); ?>" class="btn btn-filled">S'inscrire</a>
-              </div>
+              <?php if (!is_user_logged_in()) : ?>
+                <div class="auth-buttons">
+                  <a href="<?php echo get_permalink(get_page_by_path('connexion')); ?>" class="btn btn-outline">Connexion</a>
+                  <a href="<?php echo get_permalink(get_page_by_path('inscription')); ?>" class="btn btn-filled">S'inscrire</a>
+                </div>
+              <?php else : ?>
+                <div class="user-icons d-flex align-items-center justify-content-end gap-4">
+                  <a href="#" class="icon-link"><i class="fas fa-heart"></i></a>
+                  <a href="#" class="icon-link"><i class="fa-solid fa-basket-shopping"></i></a>
+                  <a href="#" class="icon-link"><i class="fas fa-bell"></i></a>
+                  <a href="#" class="icon-link"><img src="https://c.animaapp.com/K4rR5xEo/img/rectangle@2x.png" alt="Profile" class="icon-img rounded-circle"></a>
+                </div>
+              <?php endif; ?>
             <?php endif; ?>
           </div>
           <?php endif; ?>

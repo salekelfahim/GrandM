@@ -1478,3 +1478,32 @@ ul {
 .signup-prompt a:hover {
     text-decoration: underline;
 }
+
+/* User Icons Styling */
+.user-icons {
+    padding: 10px 0;
+  }
+  
+  .user-icons .icon-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .user-icons .icon-link:hover {
+    color: #FFFFFF;
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  
+  .user-icons .icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  
+  .user-icons .rounded-circle {
+    width: 33px;
+    height: 33px;
+    object-fit: cover;
+  }
