@@ -1397,19 +1397,20 @@ ul {
 }
 
 .password-toggle {
-    background: none;
-    border: none;
     position: absolute;
-    right: 10px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6c757d;
     cursor: pointer;
-    color: #507A32;
-    padding: 5px;
+    padding: 0;
+    outline: none;
 }
 
 .password-toggle:hover {
-    color: #549932;
+    color: #495057;
 }
 
 .password-toggle i {
@@ -1760,4 +1761,36 @@ ul {
         flex: 1;
         width: 100%;
     }
+}
+
+/* Form Error Styling */
+.form-errors {
+    background-color: #fff8f8;
+    border-left: 4px solid #e74c3c;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #e74c3c;
+    font-size: 14px;
+}
+
+.error-message:last-child {
+    margin-bottom: 0;
+}
+
+.error-message i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* Input highlight for errors */
+.form-control.has-error {
+    border-color: #e74c3c;
 }

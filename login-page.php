@@ -2,10 +2,15 @@
 /**
  * Template Name: Login Page
  *
- * This is the template for displaying the login page.
- *
  * @package Le_Grand_Marche
  */
+
+if (is_user_logged_in()) {
+    wp_redirect(home_url('/'));
+    exit;
+}
+
+$login_errors = lgm_process_login();
 
 get_header();
 ?>
@@ -14,35 +19,53 @@ get_header();
     <main id="main" class="site-main">
         <div class="connexion-container">
             <h1 class="connexion-title">Connexion</h1>
-            
+
+            <?php if (!empty($login_errors)) : ?>
+                <div class="form-errors">
+                    <?php foreach ($login_errors as $error) : ?>
+                        <div class="error-message">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <span><?php echo esc_html($error); ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
             <div class="form-container">
-                <form action="#" method="post">
+                <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post">
+                    <?php wp_nonce_field('lgm_login_action', 'lgm_login_nonce'); ?>
+
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        <label for="name">Nom d'utilisateur ou Email</label>
+                        <div class="input-container">
+                            <input type="text" name="username" id="name" class="form-control" 
+                                   placeholder="Entrez votre nom ou email" required
+                                   value="<?php echo isset($_POST['username']) ? esc_attr($_POST['username']) : ''; ?>">
+                        </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Mot de passe</label>
                         <div class="password-container">
-                            <input type="password" id="password" class="form-control" placeholder="Enter password">
-                            <button type="button" class="password-toggle">
+                            <input type="password" name="password" id="password" class="form-control" 
+                                   placeholder="Entrez votre mot de passe" required>
+                            <button type="button" class="password-toggle" tabindex="-1">
                                 <i class="fa-regular fa-eye"></i>
                             </button>
                         </div>
                         <div class="forgot-password">
-                            <a href="#">Forgot password?</a>
+                            <a href="<?php echo esc_url(wp_lostpassword_url()); ?>">Mot de passe oublié ?</a>
                         </div>
                     </div>
-                    
+
                     <button type="submit" class="connexion-btn">Connectez-vous</button>
-                    
+
                     <button type="button" class="google-btn">
                         <i class="fa-brands fa-google"></i>
                         Connectez-vous avec Google
                     </button>
                 </form>
-                
+
                 <div class="signup-prompt">
                     Vous n'avez pas de compte ? <a href="<?php echo esc_url(home_url('/inscription')); ?>">S'inscrire</a>
                 </div>
@@ -51,28 +74,4 @@ get_header();
     </main>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const passwordToggle = document.querySelector('.password-toggle');
-        const toggleIcon = document.querySelector('.password-toggle i');
-        
-        if (passwordToggle) {
-            passwordToggle.addEventListener('click', function() {
-                const passwordInput = document.getElementById('password');
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    toggleIcon.classList.remove('fa-eye');
-                    toggleIcon.classList.add('fa-eye-slash');
-                } else {
-                    passwordInput.type = 'password';
-                    toggleIcon.classList.remove('fa-eye-slash');
-                    toggleIcon.classList.add('fa-eye');
-                }
-            });
-        }
-    });
-</script>
-
-<?php
-get_footer();
-?> 
+<?php get_footer(); ?>

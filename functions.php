@@ -153,6 +153,7 @@ function le_grand_marche_scripts() {
     // Enqueue scripts
     wp_enqueue_script('jquery');
     wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js', array('jquery'), null, true);
+    wp_enqueue_script('le-grand-marche-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), time(), true);
 }
 add_action('wp_enqueue_scripts', 'le_grand_marche_scripts');
 
@@ -182,6 +183,12 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Auth additions.
+ */
+require get_template_directory() . '/inc/auth.php';
+
 
 /**
  * Load Jetpack compatibility file.
